@@ -32,8 +32,8 @@ private:
     int next(int);
     int prev(int);
     void swap(int* x, int* y);
-    int partition (int lowIndex, int highIndex);
-    void myQuickSort(int lowIndex, int highIndex);
+    int partition (int* arr, int lowIndex, int highIndex);
+    void myQuickSort(int* arr, int lowIndex, int highIndex);
 };
 
 template <class T>
@@ -202,7 +202,7 @@ T& CircularArray<T>::operator[](int index)
 template <class T>
 void CircularArray<T>::sort()
 {
-    myQuickSort(0, size()-1);
+    myQuickSort(array, 0, size()-1);
 }
 
 template <class T>
@@ -214,7 +214,7 @@ void CircularArray<T>::swap(int* x, int* y)
 }
 
 template <class T>
-int CircularArray<T>::partition (int lowIndex, int highIndex)
+int CircularArray<T>::partition (int* arr, int lowIndex, int highIndex)
 {
     int pivot = (*this)[highIndex];
     int i = (lowIndex - 1);
@@ -223,32 +223,57 @@ int CircularArray<T>::partition (int lowIndex, int highIndex)
         if ( (*this)[j] <= pivot )
         {
             i++; 
-            swap((array + (front + i)%capacity), (array + (front + j)%capacity));
+            swap((arr + (front + i)%capacity), (arr + (front + j)%capacity));
         }
+        to_string();
     }
-    swap((array + (front + i)%capacity + 1), (array + (front + highIndex)%capacity));
-
+    swap((arr + (front + i + 1)%capacity), (arr + (front + highIndex)%capacity));
     return (i+1);
 }
 
 template <class T>
-void CircularArray<T>::myQuickSort(int lowIndex, int highIndex)
+void CircularArray<T>::myQuickSort(int* arr, int lowIndex, int highIndex)
 {
-    cout<<"lowIndex "<<lowIndex<<" highIndex "<<highIndex<<endl;
+    
     if (lowIndex < highIndex)
     {
-        int piv = partition(lowIndex, highIndex);
+        int piv = partition(arr, lowIndex, highIndex);
 
-        myQuickSort(lowIndex, piv - 1);
-        myQuickSort(piv + 1, highIndex);
+        myQuickSort(arr, lowIndex, piv - 1);
+        myQuickSort(arr, piv + 1, highIndex);
+        
     }
-    to_string();
 }
 
+template <class T>
+bool CircularArray<T>::is_sorted()
+{
+    bool _is_sorted = false;
+    T* tempArray = new T[capacity];
 
-/*
-T &operator[](int);
-void sort();
-bool is_sorted();
-void reverse();
-*/
+    for (int i = 0; i < size(); i++)
+        *(tempArray + i) = *(array + i);
+
+    myQuickSort(tempArray, 0, size()-1);
+
+    for (int i = 0; i < size(); i++){
+        if (*(tempArray + i) != *(array + i)) {
+            _is_sorted = false;
+            break;
+        } else _is_sorted = true;
+    }
+        
+    return _is_sorted;
+}
+
+template <class T>
+void CircularArray<T>::reverse()
+{
+    int _size = size();
+    int midIndex = _size%2 == 0 ? _size/2 - 1 : _size/2;
+    for (int i = 0; i <= midIndex; i++){
+        int temp = *(array + (front + i)%capacity);
+        *(array + (front + i)%capacity) = *(array + (back - i)%capacity);
+        *(array + (back - i)%capacity) = temp;
+    }
+}
