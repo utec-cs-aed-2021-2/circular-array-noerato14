@@ -1,13 +1,34 @@
 {
-    "files.associations": {
-        "filesystem": "cpp",
-        "__tuple": "cpp",
-        "deque": "cpp",
-        "string": "cpp",
-        "vector": "cpp",
-        "__split_buffer": "cpp",
-        "bitset": "cpp",
-        "string_view": "cpp",
-        "iostream": "cpp"
-    }
+  "files.associations": {
+    "filesystem": "cpp",
+    "__tuple": "cpp",
+    "deque": "cpp",
+    "string": "cpp",
+    "vector": "cpp",
+    "__split_buffer": "cpp",
+    "bitset": "cpp",
+    "string_view": "cpp",
+    "iostream": "cpp",
+    "array": "cpp",
+    "algorithm": "cpp",
+    "initializer_list": "cpp",
+    "utility": "cpp"
+  },
+  "C_Cpp_Runner.cCompilerPath": "/usr/bin/gcc",
+  "C_Cpp_Runner.cppCompilerPath": "/usr/bin/g++",
+  "C_Cpp_Runner.debuggerPath": "/usr/bin/gdb",
+  "C_Cpp_Runner.makePath": "/usr/bin/make",
+  "C_Cpp_Runner.warnings": [
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic"
+  ],
+  "C_Cpp_Runner.compilerArgs": [],
+  "C_Cpp_Runner.includePaths": [],
+  "C_Cpp_Runner.linkerArgs": [],
+  "C_Cpp_Runner.cStandard": "",
+  "C_Cpp_Runner.cppStandard": "",
+  "C_Cpp_Runner.excludeSearch": [],
+  "C_Cpp_Runner.enableWarnings": true,
+  "C_Cpp_Runner.warningsAsError": false
 }
